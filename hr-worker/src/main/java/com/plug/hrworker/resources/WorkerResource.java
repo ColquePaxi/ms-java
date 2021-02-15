@@ -36,6 +36,17 @@ public class WorkerResource {
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Worker> findById(@PathVariable Long id) {
+
+		// Se o hr-payroll > application.properties não estiver configurado
+		// vai impactar no timeout
+		// Esse teste garante que não vai dar timeout à toa
+		/*
+		try {
+			Thread.sleep(3000L);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		*/
 		
 		logger.info("PORT = " + env.getProperty("local.server.port"));
 		
